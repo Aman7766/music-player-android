@@ -42,6 +42,28 @@
         >
 
     </SeekBar>
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0 min, 16 sec "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/seekbar"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        android:layout_marginStart="20dp">
+
+    </TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="song name"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="@id/time"
+        app:layout_constraintTop_toBottomOf="@id/seekbar"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent">
+    </TextView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
