@@ -52,15 +52,17 @@
         app:layout_constraintTop_toBottomOf="@id/img" />
 
     <SeekBar
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_marginTop="20dp"
+
         android:id="@+id/seekbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/song"
-        >
-    </SeekBar>
+        android:thumbTint="@color/black"
+        android:progressTint="@color/black"></SeekBar>
 
     <TextView
         android:id="@+id/time"

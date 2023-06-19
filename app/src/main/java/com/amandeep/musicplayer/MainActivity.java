@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     int current_time;
     int final_time;
     boolean isPlaying=false;
+    Handler handler=new Handler();
+
 
 
     @Override
@@ -35,9 +37,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         songname=findViewById(R.id.song);
         mediaPlayer=MediaPlayer.create(this,R.raw.ob);
         forward.setOnClickListener(this);
+        start=findViewById(R.id.time);
         rewind.setOnClickListener(this);
         play.setOnClickListener(this);
-        seekBar.setClickable(false);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            mediaPlayer.seekTo(progress);
+
+
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
 
 
 
@@ -84,20 +105,42 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         else
         {
+            mediaPlayer.start();
             current_time=mediaPlayer.getCurrentPosition();
             final_time=mediaPlayer.getDuration();
             seekBar.setMax(final_time);
             int minutes=(final_time/1000)/60;
             int second=(final_time/1000)%60;
-            String time=minutes+":"+second;
+            String time =minutes+":"+second;
             end.setText(time);
-            mediaPlayer.start();
-            seekBar.setProgress((int)current_time);
+            seekBar.setProgress(current_time);
+            handler.postDelayed(updatesong,1000);
             songname.setText(getResources().getResourceEntryName(R.raw.ob));
             Drawable pausedrawable= ResourcesCompat.getDrawable(getResources(),R.drawable.baseline_pause_circle_filled_24,null);
             play.setBackground(pausedrawable);
+
+
+
         }
         isPlaying=!isPlaying;
 
     }
+
+    public Runnable updatesong=(new Runnable() {
+        @Override
+        public void run() {
+            current_time=mediaPlayer.getCurrentPosition();
+            int minutes=(current_time/1000)/60;
+            int second=(current_time/1000)%60;
+            String time =minutes+":"+second;
+            start.setText(time);
+            seekBar.setProgress(current_time);
+            handler.postDelayed(this,1000);
+        }
+    });
+
 }
+
+
+
+
