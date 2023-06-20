@@ -8,6 +8,7 @@
     android:background="@drawable/bg_color">
 
     <TextView
+        ma
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,6 +24,8 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:id="@+id/img"
         android:layout_width="match_parent"
         android:layout_height="250dp"
@@ -31,6 +34,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
+    <TextView
+        android:id="@+id/song"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
+        android:text="TextView"
+        android:textSize="25sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img" />
 
     <SeekBar
         android:layout_width="match_parent"
@@ -39,7 +57,7 @@
         android:id="@+id/seekbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img"
+        app:layout_constraintTop_toBottomOf="@+id/song"
         >
     </SeekBar>
 
@@ -49,8 +67,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="12dp"
-        android:text="0 min, 16 sec "
-        android:textSize="20dp"
+        android:text="0 min, 16 sec"
+        android:textSize="11sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/seekbar">
 
@@ -62,14 +80,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="song name"
-        android:textSize="20dp"
+        android:textSize="11sp"
         android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.976"
         app:layout_constraintStart_toStartOf="@id/time"
         app:layout_constraintTop_toBottomOf="@id/seekbar">
-
     </TextView>
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
