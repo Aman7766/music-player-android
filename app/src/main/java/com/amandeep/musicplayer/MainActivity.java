@@ -31,11 +31,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         forward=findViewById(R.id.forward);
         rewind=findViewById(R.id.rewind);
         play=findViewById(R.id.play);
+        seekBar=findViewById(R.id.seekbar);
         songname=findViewById(R.id.song);
         mediaPlayer=MediaPlayer.create(this,R.raw.ob);
         forward.setOnClickListener(this);
         rewind.setOnClickListener(this);
         play.setOnClickListener(this);
+        seekBar.setClickable(false);
 
 
 
@@ -45,17 +47,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         if(v==forward)
         {
-            Log.d("forwad","forward clikced");
+           Forward();
         }
         else if(v==rewind)
         {
-            Log.d("rewind","rewind clikced");
+           Rewind();
         }
         else  if(v==play)
         {
         PlayMusic();
         }
 
+    }
+    public void Rewind()
+    {
+        if(mediaPlayer.getCurrentPosition()>10)
+        {
+         mediaPlayer.seekTo(mediaPlayer.getCurrentPosition()-10000);
+        }
+    }
+
+    public void Forward()
+    {
+        if(mediaPlayer.getCurrentPosition()<mediaPlayer.getDuration())
+        {
+            mediaPlayer.seekTo(mediaPlayer.getCurrentPosition()+10000);
+        }
     }
    public void PlayMusic()
     {
@@ -69,11 +86,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             current_time=mediaPlayer.getCurrentPosition();
             final_time=mediaPlayer.getDuration();
+            seekBar.setMax(final_time);
             int minutes=(final_time/1000)/60;
             int second=(final_time/1000)%60;
             String time=minutes+":"+second;
             end.setText(time);
             mediaPlayer.start();
+            seekBar.setProgress((int)current_time);
             songname.setText(getResources().getResourceEntryName(R.raw.ob));
             Drawable pausedrawable= ResourcesCompat.getDrawable(getResources(),R.drawable.baseline_pause_circle_filled_24,null);
             play.setBackground(pausedrawable);
